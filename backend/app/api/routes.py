@@ -24,6 +24,17 @@ async def health_check():
     return HealthResponse(status="ok", message="Resume Tailoring API is running")
 
 
+@router.get("/")
+async def root():
+    """Root endpoint with API info."""
+    return {
+        "message": "Resume Tailoring API",
+        "version": "1.0.0",
+        "docs": "/docs",
+        "health": "/api/health"
+    }
+
+
 @router.post("/process", response_model=ResumeProcessResponse)
 async def process_resume(
     resume: UploadFile = File(..., description="Resume file (PDF or DOCX)"),

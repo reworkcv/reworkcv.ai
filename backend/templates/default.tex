@@ -1,0 +1,152 @@
+\documentclass[11pt,a4paper]{article}
+
+% ---------- PACKAGES ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=0.7in]{geometry}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{array}
+
+% ---------- GLOBAL SPACING ----------
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt} % no extra vertical space between paragraphs
+
+% ---------- CUSTOM COMMANDS / ENVIRONMENTS ----------
+
+% Title block
+\newcommand{\documentTitle}[2]{%
+  \begin{center}
+    {\LARGE\bfseries #1\par}
+    #2
+  \end{center}
+}
+
+% Small section heading
+\newcommand{\tinysection}[1]{%
+  \textbf{\large #1}\par
+}
+
+% Compact itemize for resume
+\newenvironment{resume_list}{%
+  \begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=0pt, parsep=0pt]
+}{%
+  \end{itemize}
+}
+
+% Heading with bold title on left, date on right
+\newcommand{\headingBf}[2]{%
+  \textbf{#1}\hfill #2\par
+}
+
+% Heading with italic subtitle on left, (optional) right text
+\newcommand{\headingIt}[2]{%
+  \textit{#1}\hfill #2\par
+}
+
+% ---------- DOCUMENT ----------
+\begin{document}
+
+% Do NOT stretch pages to bottom (prevents big white gaps)
+\raggedbottom
+
+\documentTitle{Ravi Chandu Thoram}{
+    \href{tel:2243864176}{\raisebox{-0.05\height}{\faPhone}~330-554-6016} ~|~
+    \href{mailto:rhthoram999@gmail.com}{\raisebox{-0.15\height}{\faEnvelope}~rhthoram999@gmail.com} ~|~
+    \href{https://www.linkedin.com/in/thoram-ravi/}{\raisebox{-0.15\height}{\faLinkedin}~thoram-ravi}
+}
+
+\tinysection{Summary}
+
+\begin{resume_list}
+    \item Over 5 years of professional experience in designing and developing dynamic, user-centric web applications with a focus on responsive and accessible designs.
+    \item Proficient in modern front-end technologies, including JavaScript, HTML, CSS, and frameworks like React.js, AngularJS, and Vue.js, delivering seamless user experiences.
+    \item Strong expertise in developing scalable, high-performance applications, optimizing load times, and enhancing user engagement through innovative UI solutions.
+    \item Hands-on experience with state management tools such as Redux and Context API to ensure efficient data flow and maintainable codebases.
+    \item Skilled in collaborating with cross-functional teams, including UX designers, product managers, and back-end engineers, to deliver end-to-end solutions that meet business objectives.
+    \item Extensive knowledge of integrating RESTful APIs and web services, ensuring smooth communication between client-side and server-side applications.
+    \item Experienced in utilizing AWS services, such as AWS Lambda, Amazon S3, and CloudFront, to build reliable and scalable cloud-based applications.
+    \item Adept at leading performance optimization initiatives and implementing best practices for maintainable and reusable front-end architectures.
+    \item Proven ability to mentor junior developers, conduct code reviews, and foster a culture of high-quality software development.
+\end{resume_list}
+
+\section*{Skills}
+
+\begin{tabular}{@{}p{6cm} p{9cm}@{}}
+\textbf{Front-End Frameworks \& Libraries:} & React.js, AngularJS, Vue.js, Next.js, Redux, D3.js, jQuery, Bootstrap, Tailwind CSS \\
+\textbf{Web Development Expertise:} & HTML5, CSS3, JavaScript (ES6+), TypeScript, RESTful API Integration, GraphQL, WebSockets, AJAX \\
+\textbf{Back-End Development:} & Node.js, Express.js \\
+\textbf{UI/UX Design \& Tools:} & Responsive Web Design, Wireframing, Prototyping, Figma, Adobe XD, Sketch, Storybook \\
+\textbf{Cloud Platforms \& Services:} & AWS (Lambda, S3, CloudFront, Amplify, RDS, API Gateway, Elastic Beanstalk), Azure, Firebase \\
+\textbf{Performance Optimization:} & Code Splitting, Lazy Loading, Caching Strategies, Lighthouse Auditing, Image Optimization \\
+\textbf{Version Control \& Collaboration:} & Git, GitHub, GitLab, Bitbucket, Jira, Confluence, Agile Methodologies, SCRUM \\
+\textbf{Testing Frameworks \& Tools:} & Jest, Enzyme, Cypress, Mocha, Chai, Selenium, BrowserStack \\
+\textbf{Data Visualization \& Analytics:} & D3.js, Highcharts, Chart.js, Tableau, Power BI \\
+\textbf{Database \& Back-End Integration:} & SQL, NoSQL (MongoDB, Firebase), REST APIs, GraphQL, Node.js, Express.js \\
+\textbf{Continuous Integration \& Deployment:} & Jenkins, CircleCI, TravisCI, GitHub Actions, Docker, Kubernetes \\
+\textbf{Mobile-First Development:} & Progressive Web Apps (PWAs), Hybrid Applications, React Native \\
+\textbf{Security Best Practices:} & OAuth2, JWT, CSRF Protection, Cross-Origin Resource Sharing (CORS), OWASP Guidelines \\
+\end{tabular}
+
+\section*{Education}
+
+\headingBf{Kent State University, Kent, OH}{May 2024}
+\headingIt{Master of Science | Computer Science | GPA: 3.8/4.0}{}
+
+\headingBf{Bharath University, Chennai, India}{April 2019}
+\headingIt{Bachelor of Technology | Computer Science and Engineering | GPA: 8.6/10}{}
+
+\section*{Experience}
+
+\headingBf{T-Mobile, Texas, USA}{June 2023 -- Present}
+\headingIt{Senior Front-End Developer}{}
+\begin{resume_list}
+    \item Led the front-end development of T-Mobile's customer-facing web applications, enhancing user engagement and satisfaction through intuitive interfaces.
+    \item Spearheaded the integration of real-time chat support features, improving customer service response times by 30\%.
+    \item Utilized React.js and Node.js to develop dynamic components, reducing page load times and enhancing application performance.
+    \item Implemented state management solutions using Redux, streamlining data flow and improving application scalability.
+    \item Conducted code reviews and mentored junior developers, fostering a culture of code quality and continuous improvement.
+    \item Integrated AWS services, such as AWS Lambda and Amazon S3, to enhance application functionality and reliability.
+    \item Developed and maintained comprehensive documentation for front-end codebases, facilitating knowledge sharing and onboarding processes.
+    \item Collaborated with UX designers to translate wireframes into high-quality code, ensuring design fidelity and user-centric development.
+\end{resume_list}
+
+\headingBf{Cognizant Technology Services, Hyderabad, India}{November 2021 -- December 2022}
+\headingIt{Front-End Developer}{}
+\begin{resume_list}
+    \item Directed the front-end development of enterprise-level web applications for clients in the financial services sector, delivering solutions that met stringent industry standards.
+    \item Engineered complex data visualization tools using D3.js, enabling clients to gain actionable insights from large datasets.
+    \item Implemented accessibility best practices, ensuring web applications were compliant with WCAG 2.1 standards.
+    \item Utilized Node.js to develop and integrate RESTful APIs, enhancing data exchange efficiency and scalability.
+    \item Led performance optimization initiatives, achieving a 40\% reduction in application load times through code splitting and lazy loading techniques.
+    \item Utilized AngularJS to build modular and maintainable front-end architectures, supporting scalable application growth.
+    \item Conducted user acceptance testing (UAT) sessions, gathering feedback to refine and enhance application features.
+    \item Integrated cloud-based solutions using AWS services, such as Amazon CloudFront and AWS Amplify, to improve application deployment and performance.
+    \item Designed and implemented microservices using Node.js and Express.js to enable scalable, modular, and efficient back-end solutions for enterprise applications.
+\end{resume_list}
+
+\headingBf{Tata Consultancy Services, Odisha, India}{June 2019 -- November 2021}
+\headingIt{Front-End Developer}{}
+\begin{resume_list}
+    \item Led the front-end development team in creating scalable web applications for global clients, adhering to best practices in software engineering.
+    \item Designed and implemented reusable UI components, enhancing development efficiency and consistency across projects.
+    \item Built and deployed server-side applications using Node.js to handle real-time data processing, ensuring high reliability and low latency for critical client systems.
+    \item Utilized Vue.js to develop interactive user interfaces, improving user engagement and satisfaction.
+    \item Implemented internationalization (i18n) strategies, enabling applications to support multiple languages and regional settings.
+    \item Led the adoption of continuous integration and continuous deployment (CI/CD) pipelines for front-end codebases, reducing deployment times and increasing release frequency.
+    \item Integrated AWS services, such as Amazon RDS and AWS Elastic Beanstalk, to support scalable and reliable application infrastructures.
+    \item Conducted performance audits and implemented optimizations, resulting in a 35\% improvement in application responsiveness.
+    \item Mentored a team of front-end developers, providing guidance on best practices and fostering professional growth.
+    \item Collaborated on migrating legacy monolithic back-end systems to Node.js-based microservices, enhancing maintainability and scalability while reducing server costs by 15\%.
+\end{resume_list}
+
+\section*{Awards and Achievements}
+
+\begin{resume_list}
+    \item TCS Gems - Star Performer of the Quarter – Tata Consultancy Services.
+    \item Performance Optimization Squad: Led efforts to identify and resolve performance bottlenecks, achieving a 40\% improvement in application load times and a smoother user experience by optimizing code execution, resource loading, and reducing unnecessary network requests.
+\end{resume_list}
+
+\end{document}

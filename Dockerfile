@@ -1,22 +1,27 @@
-FROM python:3.11-slim
+# Multi-stage build for faster deployment
+FROM python:3.11-slim as base
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
+# Install system dependencies in a single layer
+RUN apt-get update && apt-get install -y --no-install-recommends \
     texlive-latex-base \
     texlive-latex-extra \
     texlive-fonts-recommended \
     texlive-fonts-extra \
     libmagic1 \
     curl \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
 
 WORKDIR /app
 
-# Install Python dependencies
+# Install Python dependencies (cache this layer)
 COPY backend/requirements.txt .
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy application code
+# Production stage
+FROM base as production
+
+# Copy application code (changes frequently)
 COPY backend/app ./app
 COPY backend/templates ./templates
 
@@ -28,6 +33,10 @@ RUN useradd -m appuser && chown -R appuser:appuser /app /tmp
 USER appuser
 
 EXPOSE 8000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost:8000/api/health || exit 1
 
 # Start the application
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

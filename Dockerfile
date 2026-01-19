@@ -1,4 +1,4 @@
-# Resume Tailor Backend Dockerfile - Cloud Run Compatible
+# Resume Tailor Backend Dockerfile - Cloud Run Optimized
 FROM python:3.11-slim
 
 # Install system dependencies including pdflatex for PDF generation
@@ -10,7 +10,8 @@ RUN apt-get update && apt-get install -y \
     texlive-latex-extra \
     texlive-fonts-recommended \
     texlive-fonts-extra \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
 
 WORKDIR /app
 

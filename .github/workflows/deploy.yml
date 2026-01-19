@@ -25,6 +25,13 @@ jobs:
       - name: Configure Docker
         run: gcloud auth configure-docker us-central1-docker.pkg.dev
 
+      - name: Create Artifact Registry repository
+        run: |
+          gcloud artifacts repositories create reworkcv-repo \
+            --repository-format=docker \
+            --location=us-central1 \
+            --description="Resume app repository" || echo "Repository already exists"
+
       - name: Build and Push
         run: |
           IMAGE="us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/reworkcv-repo/app:${{ github.sha }}"

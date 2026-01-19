@@ -17,40 +17,15 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
-      - name: Setup Google Cloud
-        uses: google-github-actions/setup-gcloud@v2
+      - name: Deploy to Cloud Run
+        uses: google-github-actions/deploy-cloudrun@v2
         with:
-          project_id: ${{ secrets.GCP_PROJECT_ID }}
-
-      - name: Configure Docker
-        run: gcloud auth configure-docker us-central1-docker.pkg.dev
-
-      - name: Create Artifact Registry repository
-        run: |
-          gcloud artifacts repositories create reworkcv-repo \
-            --repository-format=docker \
-            --location=us-central1 \
-            --description="Resume app repository" || echo "Repository already exists"
-
-      - name: Build and Push
-        run: |
-          IMAGE="us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/reworkcv-repo/app:${{ github.sha }}"
-          docker build -t $IMAGE .
-          docker push $IMAGE
-
-      - name: Deploy
-        run: |
-          IMAGE="us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/reworkcv-repo/app:${{ github.sha }}"
-          gcloud run deploy reworkcv-app \
-            --image $IMAGE \
-            --region us-central1 \
-            --platform managed \
-            --allow-unauthenticated \
-            --memory 1Gi \
-            --set-env-vars=GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }} \
-            --quiet
+          service: reworkcv-app
+          region: us-central1
+          source: .
+          env_vars: |
+            GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
+          flags: --allow-unauthenticated --memory 2Gi
 
       - name: Show URL
-        run: |
-          URL=$(gcloud run services describe reworkcv-app --region us-central1 --format="value(status.url)")
-          echo "🚀 Deployed: $URL"
+        run: echo "🚀 Deployed to Cloud Run"

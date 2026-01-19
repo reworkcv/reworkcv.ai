@@ -7,7 +7,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
     
     steps:
       - name: Checkout
@@ -23,21 +22,17 @@ jobs:
         with:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
 
-      - name: Enable required APIs
+      - name: Build Docker image
         run: |
-          gcloud services enable run.googleapis.com || true
-          gcloud services enable cloudbuild.googleapis.com || true
-          gcloud services enable artifactregistry.googleapis.com || true
+          docker build -t reworkcv-app .
 
       - name: Deploy to Cloud Run
         run: |
           gcloud run deploy reworkcv-app \
-            --source . \
+            --image reworkcv-app \
             --region us-central1 \
             --allow-unauthenticated \
             --memory 2Gi \
-            --cpu 1 \
-            --timeout 300s \
             --set-env-vars=GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }} \
             --quiet
 
@@ -45,5 +40,3 @@ jobs:
         run: |
           URL=$(gcloud run services describe reworkcv-app --region us-central1 --format="value(status.url)")
           echo "🚀 Deployed: $URL"
-          echo "🌐 API: $URL/api/health"
-          echo "📚 Docs: $URL/docs"

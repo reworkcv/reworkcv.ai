@@ -29,7 +29,7 @@ async def root():
     """Root endpoint with API info."""
     return {
         "message": "Resume Tailoring API",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "docs": "/docs",
         "health": "/api/health"
     }
